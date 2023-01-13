@@ -47,12 +47,18 @@ const signupInitialvalues = {
     username :'',
     password :'',
 };
+
+const LoginInitialvalues = {
+    username: '',
+    password: ''
+}
 const Login = () =>{
 
     const imageURL = 'https://www.sesta.it/wp-content/uploads/2021/03/logo-blog-sesta-trasparente.png';
     
     const [account ,setAccount] = useState('login');
 
+    const [login , setLogin] = useState(LoginInitialvalues);
 
     const [signup , setSignup] = useState(signupInitialvalues);
 
@@ -81,6 +87,24 @@ const Login = () =>{
         }
     }
 
+    const onValChange = (e) => {
+        setLogin({ ...login, [e.target.name]: e.target.value});
+    }
+
+    const loginUser = async () =>{
+          let response = await API.userLogin(login);
+          if(response.isSuccess){
+            SetError('');
+            sessionStorage.setItem('accessToken',`Bearer ${response.data.accessToken}`);
+            sessionStorage.setItem('refreshToken',`Bearer ${response.data.refreshToken}`);
+            name
+            username
+
+          }
+          else{
+            SetError('something went wrong');
+          }
+    }
     return(
         <Component> 
         <Box> 
@@ -88,9 +112,9 @@ const Login = () =>{
            {
            account === 'login' ?
            <Wrapper>
-              <TextField variant='standard' label ="Enter your Userid"/> {/* box type of input field*/}
-              <TextField variant='standard' label ="Enter your password"/> {/* label same as placeholder */}  
-              <Loginbutton variant="contained">Login</Loginbutton> 
+              <TextField variant='standard' value={login.username}onChange={(e) => onValChange(e)} name = "username" label ="Enter your Userid"/> {/* box type of input field*/}
+              <TextField variant='standard' value={login.password}onChange={(e) => onValChange(e)} name = "password" label ="Enter your password"/> {/* label same as placeholder */}  
+              <Loginbutton variant="contained" onClick={() => loginUser()}>Login</Loginbutton> 
               <Typography style = {{textAlign: 'center'}}>OR</Typography>    {/* same <p> tag */}
               <SignInButton variant="contained" onClick = { () => setAcc()}>  Sign Up</SignInButton>
            </Wrapper>
