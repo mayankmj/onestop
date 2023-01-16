@@ -4,7 +4,7 @@ import {API} from '../../service/api';
 
 import { DataContext } from '../../context/DataProvider';
 
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'; // navigation to home page , custom hook
 // components
 // navigation
 
@@ -56,7 +56,7 @@ const LoginInitialvalues = {
     username: '',
     password: ''
 }
-const Login = () =>{
+const Login = ({isUserAuthenticated}) =>{
 
     const imageURL = 'https://www.sesta.it/wp-content/uploads/2021/03/logo-blog-sesta-trasparente.png';
     
@@ -69,6 +69,8 @@ const Login = () =>{
     const [error , SetError] = useState('');
 
     const {setAccount} = useContext(DataContext);
+
+    const navigate = useNavigate();
 
     const entry = (props) =>{
         props.preventDefault();
@@ -107,6 +109,9 @@ const Login = () =>{
                                   //name of blog uploader 
                              //username og blog uploader
              setAccount({username: response.data.username , name: response.data.name}); // global declare
+             
+             isUserAuthenticated(true); // for logined user returing true
+             navigate('/');
 
           }
           else{
