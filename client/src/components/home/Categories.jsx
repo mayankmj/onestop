@@ -3,6 +3,8 @@ import { Button, TableBody, TableCell, TableHead, TableRow ,Table , styled} from
 
 import { categories } from "../../constants/data";
 
+import { Link } from "react-router-dom";
+
 const StyledTable = styled(Table)`
   border: 1px solid rgba(224,224,224,1)
 `
@@ -18,13 +20,16 @@ const Categories =  () =>{
 
     return(
         <>
-       <StyledButton variant="contained">Create Button</StyledButton>
-
+        <Link to={`/create`}  style = {{textDecoration : 'none'}}>
+           <StyledButton variant="contained">Create Button</StyledButton>
+        </Link>
           <StyledTable>
             <TableHead>
                 <TableRow>
                     <TableCell>
+                         <Link to='/'>
                         All Categories
+                        </Link>
                     </TableCell>
                 </TableRow>
             </TableHead>
@@ -33,7 +38,9 @@ const Categories =  () =>{
                 categories.map(category =>(
                  <TableRow key = {category.id}>
                     <TableCell>
-                       {category.type}
+                       <Link to= {`/?category=${category.type}`}>
+                          {category.type}
+                       </Link>
                     </TableCell>
                 </TableRow>
 
