@@ -3,7 +3,7 @@ import { Button, TableBody, TableCell, TableHead, TableRow ,Table , styled} from
 
 import { categories } from "../../constants/data";
 
-import { Link } from "react-router-dom";
+import { Link , useSearchParams} from "react-router-dom";
 
 const StyledTable = styled(Table)`
   border: 1px solid rgba(224,224,224,1)
@@ -15,21 +15,26 @@ const StyledButton = styled(Button)`
    background: #6494ED;
    color: #fff
 `
-
+const StyledLink =  styled(Link)`
+ text-decoration: 'none'
+ color: inherit
+`
 const Categories =  () =>{
 
+    const [searchParams] = useSearchParams(); // seacrch param is custom hook it is url after "?"
+    const category = searchParams.get('category');
     return(
         <>
-        <Link to={`/create`}  style = {{textDecoration : 'none'}}>
+        <Link to={`/create?category=${category || ''}`}>
            <StyledButton variant="contained">Create Button</StyledButton>
         </Link>
           <StyledTable>
             <TableHead>
                 <TableRow>
                     <TableCell>
-                         <Link to='/'>
+                         <StyledLink to='/'>
                         All Categories
-                        </Link>
+                        </StyledLink>
                     </TableCell>
                 </TableRow>
             </TableHead>
@@ -38,9 +43,9 @@ const Categories =  () =>{
                 categories.map(category =>(
                  <TableRow key = {category.id}>
                     <TableCell>
-                       <Link to= {`/?category=${category.type}`}>
+                       <StyledLink to= {`/?category=${category.type}`}>
                           {category.type}
-                       </Link>
+                       </StyledLink>
                     </TableCell>
                 </TableRow>
 
