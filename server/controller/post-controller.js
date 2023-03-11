@@ -1,5 +1,6 @@
 
-import Post from "../database/post.js"
+// import { request } from "express";
+import Post from "../model/post.js"
 
 export const createPost = async (request,response) =>{
     try {
@@ -10,5 +11,21 @@ export const createPost = async (request,response) =>{
     } catch (error) {
         return response.status(500).json(error);
     }
-    
+}
+
+export const getAllPosts = async (request,response) => {
+    let category =  request.query.category;
+    let posts;
+    try {
+        if(category){
+            posts = await Post.find({categories: category})
+        }
+        else{
+            posts = await Post.find({});
+        }
+        // let posts = await Post.find({});
+        return response.status(200).json(posts);
+    } catch (error){
+        return response.status(500).json({msg: error.message})
+    }
 }

@@ -4,7 +4,7 @@ import axios from 'axios';
 
 import { API_NOTIFICATION_MESSAGES,SERVICE_URLS } from '../constants/config'; //api messages
 
-import { getAccessToken } from '../utils/common-utils';
+import { getAccessToken,getType } from '../utils/common-utils';
 
 const API_URL = 'http://localhost:8000'; // backend url
 
@@ -21,6 +21,11 @@ const axiosInstance = axios.create({
 // in case of request
 axiosInstance.interceptors.request.use( // use function takes 2 call back function 1. successfull case 2. unsuccessfull case
        function(config){ // first call back on fullfilled
+        if(config.TYPE.params){
+            config.params = config.TYPE.params;
+        } else if(config.TYPE.query){
+            config.url = config.url + './' + config.TYPE.query;
+        }
         return config;
        },
        function(error){ // second call back in case of reject
@@ -96,6 +101,7 @@ for(const [key,value] of Object.entries(SERVICE_URLS)){// picks every object wit
             headers: {// verifying user for writing content in the post
                 authorization: getAccessToken()
             },
+            TYPE: getType(value, body),
             onUploadProgress: function(progressEvent){
             if (showUploadProgress){
                 let percentageCompleted = Math.round((progressEvent.loaded*100) / progressEvent.total)
