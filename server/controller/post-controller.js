@@ -1,5 +1,6 @@
 
 // import { request } from "express";
+
 import Post from "../model/post.js"
 
 export const createPost = async (request,response) =>{
@@ -26,6 +27,17 @@ export const getAllPosts = async (request,response) => {
         // let posts = await Post.find({});
         return response.status(200).json(posts);
     } catch (error){
+        return response.status(500).json({msg: error.message})
+    }
+}
+
+
+export const getPost = async (request,response) =>{
+    try{
+        const post = await Post.findById(request.params.id); // finding by mongodb id -> ._id
+        return response.status(200).json(post);
+    }
+    catch (error){
         return response.status(500).json({msg: error.message})
     }
 }

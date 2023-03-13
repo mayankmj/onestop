@@ -22,9 +22,9 @@ const axiosInstance = axios.create({
 axiosInstance.interceptors.request.use( // use function takes 2 call back function 1. successfull case 2. unsuccessfull case
        function(config){ // first call back on fullfilled
         if(config.TYPE.params){
-            config.params = config.TYPE.params;
+            config.params = config.TYPE.params
         } else if(config.TYPE.query){
-            config.url = config.url + './' + config.TYPE.query;
+            config.url = config.url + '/' + config.TYPE.query;
         }
         return config;
        },

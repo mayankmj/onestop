@@ -40,7 +40,7 @@ const initialPost = {
     picture: '',
     username: '',
     categories:'',
-    createddate: new Date() 
+    createdDate: new Date() 
 }
 
 const CreatePost = () =>{
