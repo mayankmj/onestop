@@ -96,7 +96,7 @@ for(const [key,value] of Object.entries(SERVICE_URLS)){// picks every object wit
         axiosInstance({
             method: value.method,
             url: value.url,
-            data: body,
+            data: value.method === 'DELETE' ? {} : body,
             responseType: value.responseType,
             headers: {// verifying user for writing content in the post
                 authorization: getAccessToken()

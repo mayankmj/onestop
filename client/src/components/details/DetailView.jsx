@@ -1,7 +1,7 @@
 
 import {Box , Typography ,styled} from '@mui/material'
 
-import { useParams } from 'react-router-dom';
+import { useParams,Link, useNavigate } from 'react-router-dom';
 
 import { useEffect , useState , useContext} from 'react';
 
@@ -18,7 +18,9 @@ const DetailView = () => {
     const [post, setPost] = useState({});
     const { id } = useParams();
 
-    const {account} = useContext(DataContext)
+    const {account} = useContext(DataContext);
+
+    const navigate = useNavigate();
 
     const url = post.picture ? post.picture : 'https://picsum.photos/seed/picsum/200/300';
     // api call on id(search param waali) change
@@ -34,6 +36,14 @@ const DetailView = () => {
         fetchData();
     }, []);
 
+    const deleteBlog = async () =>{
+        let response = await API.deletePost(post._id);
+
+        if(response.isSuccess){
+            navigate('/');
+        }
+    }
+
     return(
         <Container>
            <Image src={url} alt="blog" />
@@ -43,8 +53,8 @@ const DetailView = () => {
             { // verfication to show edit , delete option to only the user who has posted it
                 account.username === post.username && 
                 <>
-                <EditIcon color="primary"/>
-                <DeleteIcon color="error"/>
+                <Link to={`/update/${post._id}`}><EditIcon color="primary"/> </Link>
+                <DeleteIcon onClick={ () => deleteBlog()} color="error"/>
                 </>
             }
                 
