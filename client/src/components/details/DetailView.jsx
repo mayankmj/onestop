@@ -11,6 +11,8 @@ import {Edit , Delete} from '@mui/icons-material'
 
 import {DataContext} from '../../context/DataProvider' 
 
+import Comments from './comments/Comments';
+
 // dataContext and usecontext is use to veriffy whether the viewer is the owner of the blog or not
 
 const DetailView = () => {
@@ -67,6 +69,7 @@ const DetailView = () => {
            </Author>
 
            <Typography>{post.description}</Typography>
+           <Comments post = {post} />
         </Container>
     )
 }

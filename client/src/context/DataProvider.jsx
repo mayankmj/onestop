@@ -19,3 +19,4 @@ const DataProvider = ( { children } ) => {
 }
 
 export default DataProvider;
+// dataProvider stores all the login info of the user
