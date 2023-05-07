@@ -6,7 +6,7 @@ import { API_NOTIFICATION_MESSAGES,SERVICE_URLS } from '../constants/config'; //
 
 import { getAccessToken,getType } from '../utils/common-utils';
 
-const API_URL = 'http://localhost:8000'; // backend url
+const API_URL = 'https://onestop.up.railway.app/'; // backend url
 
 const axiosInstance = axios.create({
     baseURL: API_URL,
