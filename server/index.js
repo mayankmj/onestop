@@ -16,7 +16,7 @@ app.use(bodyParser.urlencoded({extended:true}))
 
 app.use('/',Router); // first argument is used when we have static route
 
-const PORT = 8000;
+const PORT =process.env.PORT || 8000;
 
 app.listen(PORT, () =>console.log(`server is runnning on port ${PORT}`));
 
