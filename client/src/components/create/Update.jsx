@@ -4,6 +4,8 @@ import {AddCircle as Add} from "@mui/icons-material"
 import { useLocation, useNavigate , useParams} from "react-router-dom";
 import {DataContext} from '../../context/DataProvider'
 import {API} from '../../service/api'
+import "./Update.css"
+import img1 from "./image1.jpg"
 
 const Image = styled('img')({
  width: '100%',
@@ -56,7 +58,7 @@ const Update = () =>{
     const navigate = useNavigate();
     const {id} = useParams();
 
-    const url = post.picture ? post.picture : "https://cdn.pixabay.com/photo/2015/12/12/17/52/building-1089861__340.jpg"
+    const url = post.picture ? post.picture : img1
 
 
     // for edit the data should be copied to the edit page
@@ -101,7 +103,7 @@ const Update = () =>{
     }
     return(
         <Container>
-            <Image src={url} alt="banner"/>
+            <Image src={url} alt="banner" className="update-post_Image"/>
             <StyledFormControl>
                 <label htmlFor="fileinput"><Add fontSize="large"  color="action"/></label>
                 <input type="file" id='fileinput' style={{display:'none'}} onChange={(e) => setFile(e.target.files[0])} />

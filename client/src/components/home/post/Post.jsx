@@ -2,6 +2,8 @@
 
 import {Box , Typography , styled} from '@mui/material';
 import {addElipsis} from '../../../utils/common-utils'
+import prof_image from "./profile_image.jpg"
+
 const Container = styled(Box)`
     border: 1px solid #d3cede;
     border-radius: 10px;
@@ -39,7 +41,7 @@ const Details = styled(Typography)`
 
 
 const Post = ({post}) =>{
-    const url = post.picture ? post.picture : 'https://picsum.photos/id/0/367/267'
+    const url = post.picture ? post.picture : prof_image
     return (
 
         <Container>

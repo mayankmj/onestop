@@ -1,9 +1,9 @@
 import React , {useState , useContext} from 'react'
 import { Box , TextField , Button , styled , Typography} from '@mui/material'
 import {API} from '../../service/api';
-
+import "./Login.css"
 import { DataContext } from '../../context/DataProvider';
-
+import logo1 from "./logo01.png"
 import { useNavigate } from 'react-router-dom'; // navigation to home page , custom hook
 // components
 // navigation
@@ -24,6 +24,8 @@ const Wrapper = styled(Box)`
     display: flex;
     flex: 1;
     flex-direction: column;
+    padding-top:20px;
+    padding-buttom:20px;
     & > div , & > Button, & >p{
         margin-top: 10px;
     }
@@ -47,9 +49,9 @@ const SignInButton = styled(Button)`
 `;
 
 const signupInitialvalues = {
-    name :'',
-    username :'',
-    password :'',
+    name :"",
+    username :"",
+    password :""
 };
 
 const LoginInitialvalues = {
@@ -74,6 +76,7 @@ const Login = ({isUserAuthenticated}) =>{
 
     const entry = (props) =>{
         props.preventDefault();
+        console.log("hello from entry")
         setSignup({...signup,[props.target.name] : props.target.value});
     };
     
@@ -84,7 +87,7 @@ const Login = ({isUserAuthenticated}) =>{
     const signupUser = async() =>{
     
         let response = await API.userSignup(signup);
-        // console.log(response);
+        console.log("herer");
         if( response.isSuccess){
             SetError('');
             setSignup(signupInitialvalues);
@@ -93,6 +96,8 @@ const Login = ({isUserAuthenticated}) =>{
         else{
             SetError('Something went wrong ! Try Again');
         }
+        ToggleAccount('login');
+        navigate('/login')
     }
 
     const onValChange = (e) => {
@@ -121,12 +126,12 @@ const Login = ({isUserAuthenticated}) =>{
     return(
         <Component> 
         <Box> 
-           <Image src={imageURL} alt='error'/> 
+           <Image src={logo1} alt='error' className='login_logo'/> 
            {
            account === 'login' ?
            <Wrapper>
-              <TextField variant='standard' value={login.username} onChange={(e) => onValChange(e)} name = "username" label ="Enter your Userid"/> {/* box type of input field*/}
-              <TextField variant='standard' value={login.password} onChange={(e) => onValChange(e)} name = "password" label ="Enter your password"/> {/* label same as placeholder */}  
+              <TextField variant="standard" value={login.username} onChange={(e) => onValChange(e)} name = "username" label ="Enter your Userid"/> {/* box type of input field*/}
+              <TextField variant="standard" type="password" value={login.password} onChange={(e) => onValChange(e)} name = "password" label ="Enter your password"/> {/* label same as placeholder */}  
              
               {error && <Typography>{error}</Typography>}
               <Loginbutton variant="contained" onClick={() => loginUser()}>Login</Loginbutton> 
@@ -136,9 +141,9 @@ const Login = ({isUserAuthenticated}) =>{
 
            :
            <Wrapper>
-              <TextField variant='standard' label ="Enter your Name" name='name' onChange = {(e) => entry(e)}/> {/* box type of input field*/}
-              <TextField variant='standard' label ="Enter your username" name='username' onChange = {(e) =>entry(e)}/> {/* label same as placeholder */}  
-              <TextField variant='standard' label ="Enter your password" name='password' onChange = {(e) =>entry(e)}/> {/* label same as placeholder */} 
+              <TextField id="textfield_col" variant="standard"  placeholder ="Enter your Name" name='name' onChange = {(e) => entry(e)}/> {/* box type of input field*/}
+              <TextField id="textfield_col" variant="standard"  placeholder ="Enter your username" name='username' onChange = {(e) =>entry(e)}/> {/* label same as placeholder */}  
+              <TextField id="textfield_col" variant="standard" type='password' placeholder ="Enter your password" name='password' onChange = {(e) =>entry(e)}/> {/* label same as placeholder */} 
              
              {error && <Typography>{error}</Typography>}
 
@@ -152,3 +157,5 @@ const Login = ({isUserAuthenticated}) =>{
     );
 };
 export default Login
+
+

@@ -4,11 +4,13 @@ import {AddCircle as Add} from "@mui/icons-material"
 import { useLocation, useNavigate } from "react-router-dom";
 import {DataContext} from '../../context/DataProvider'
 import {API} from '../../service/api'
+import img from "./image1.jpg"
 
 const Image = styled('img')({
  width: '100%',
  height: '70vh',
- objectFit: 'cover'
+ objectFit: 'cover',
+ margin:'30px'
 })
 
 const Container = styled(Box)`
@@ -55,7 +57,7 @@ const CreatePost = () =>{
     const location = useLocation();
     const navigate = useNavigate();
 
-    const url = post.picture ? post.picture : "https://cdn.pixabay.com/photo/2015/12/12/17/52/building-1089861__340.jpg"
+    const url = post.picture ? post.picture : img
 
     useEffect(() =>{
         const getImage = async () => {

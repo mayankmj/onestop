@@ -6,7 +6,7 @@ import { DataContext } from "../../../context/DataProvider"
 
 import {API} from "../../../service/api"
 import Comment from './Comment'
-
+import profileImage from "../../home/post/profile_image.jpg"
 const initialValues = {
     name: '',
     postId: '',
@@ -15,7 +15,7 @@ const initialValues = {
 }
 export const Comments = ({post}) =>{
 
-    const url = 'https://picsum.photos/200/300/' // needed person image or dp like icon
+    const url = profileImage // needed person image or dp like icon
 
     const [comment , setComments] = useState(initialValues);
 
