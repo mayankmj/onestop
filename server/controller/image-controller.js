@@ -1,6 +1,6 @@
 import grid from 'gridfs-stream';
 import mongoose from 'mongoose';
-const url = 'https://onestop.up.railway.app'
+const url = 'https://onestop1.onrender.com'
 
 let gfs,gridfsBucket; // gfg is used for storing
 const conn = mongoose.connection;
