@@ -27,7 +27,7 @@ const Banner  = () => {
 
     return(
         <Image>
-            <Heading>BLOG</Heading>
+            <Heading>ONESTOP</Heading>
             {/* <SubHeading>Code for Interview</SubHeading> */}
         </Image>
     )

@@ -8,7 +8,7 @@ import img from "./image1.jpg"
 
 const Image = styled('img')({
  width: '100%',
- height: '70vh',
+ height: '100vh',
  objectFit: 'cover',
  margin:'30px'
 })

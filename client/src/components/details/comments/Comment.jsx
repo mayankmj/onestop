@@ -64,6 +64,13 @@ const StyledDate = styled(Typography)`
 
 const DeleteIcon = styled(Delete)`
     margin-left: auto;
+      transition: transform 0.2s;
+    &:hover{
+        cursor:pointer;
+         transform: scale(1.02); /* Increase the size on hover */
+       ${'' /* box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); */}
+        
+    }
 `;
 
 export default Comment;

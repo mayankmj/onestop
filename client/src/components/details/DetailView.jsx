@@ -87,8 +87,9 @@ const Container = styled(Box)(({ theme }) => ({
 
 const Image = styled('img')({
     width: '100%',
-    height: '50vh',
-    objectFit: 'cover'
+    height: '100vh',
+    objectFit: 'cover',
+    marginTop:'10px'
 });
 
 const EditIcon = styled(Edit)`
@@ -96,6 +97,13 @@ const EditIcon = styled(Edit)`
     padding: 5px;
     border: 1px solid #878787;
     border-radius: 10px;
+     transition: transform 0.2s;
+    &:hover{
+        cursor:pointer;
+         transform: scale(1.02); /* Increase the size on hover */
+       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        
+    }
 `;
 
 const DeleteIcon = styled(Delete)`
@@ -103,6 +111,13 @@ const DeleteIcon = styled(Delete)`
     padding: 5px;
     border: 1px solid #878787;
     border-radius: 10px;
+      transition: transform 0.2s;
+    &:hover{
+        cursor:pointer;
+         transform: scale(1.02); /* Increase the size on hover */
+       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        
+    }
 `;
 
 const Heading = styled(Typography)`

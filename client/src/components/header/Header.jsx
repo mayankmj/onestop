@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 const Component = styled(AppBar)`
     background: #FFFFFF;
     color: black;
+    
 `;
 
 const Container = styled(Toolbar)`
@@ -14,7 +15,12 @@ const Container = styled(Toolbar)`
         padding: 20px;
         color: #000;
         text-decoration: none;
+        &:hover {
+         color: blue; /* Change the text color on hover */
+        font-weight: bold;
     }
+    }
+     
 `
 
 const Header = () =>{
