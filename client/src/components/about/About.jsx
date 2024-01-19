@@ -1,6 +1,7 @@
 
 import { Box, styled, Typography, Link } from '@mui/material';
 import { GitHub, Instagram, Email } from '@mui/icons-material';
+import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
 
 const Banner = styled(Box)`
     background-image: url(https://www.wallpapertip.com/wmimgs/23-236943_us-wallpaper-for-website.jpg);
@@ -20,7 +21,11 @@ const Wrapper = styled(Box)`
 const Text = styled(Typography)`
     color: #878787;
 `;
-
+ const iconStyle = {
+    marginLeft: 2,
+    fontSize: '29px',
+    transition: 'transform 0.3s ease-in-out',
+  };
 const About = () => {
 
     return (
@@ -30,15 +35,21 @@ const About = () => {
                 <Typography variant="h3">Mayank Johari</Typography>
                 <Text variant="h5">I'm a Software Engineer based in India. 
                     I am Competitive Programmer.<br />
-                    If you are interested, you can view some of my favorite projects here
+                    If you are interested, You can view my Github from here
                     <Box component="span" style={{ marginLeft: 5 }}>
                         <Link href="https://github.com/mayankmj" color="inherit" target="_blank"><GitHub /></Link>
                     </Box>
+                    <br />
+                    You can view some of my favorite projects here Portfolio 
+                    <Box component="span" style={{marginLeft:5}}>
+                        <Link href="https://portfolio-mayankmj.vercel.app/" style={iconStyle} color="inherit" target="_blank"><ArrowRightAltIcon /></Link>
+                    </Box>
+                    
                 </Text>
                 <Text variant="h5">
                     Need something built or simply want to have chat? Reach out to me on
                     <Box component="span" style={{ marginLeft: 5 }}>
-                        <Link href="" color="inherit" target="_blank">
+                        <Link href="https://www.instagram.com/assassin__mayank/" color="inherit" target="_blank">
                             <Instagram />
                         </Link>
                     </Box>  
