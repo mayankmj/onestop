@@ -8,6 +8,8 @@ import { getAccessToken,getType } from '../utils/common-utils';
 
 const API_URL = 'https://onestop1.onrender.com'; // backend url
 
+//  const API_URL = 'http://localhost:8000'
+
 const axiosInstance = axios.create({
     baseURL: API_URL,
     timeout: 10000, // api delay we set time out in mili second;
