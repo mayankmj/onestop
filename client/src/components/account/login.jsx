@@ -1,5 +1,5 @@
-import React, { useState, useContext } from "react";
-import { Box, TextField, Button, styled, Typography } from "@mui/material";
+import React, { useState, useContext,useEffect } from "react";
+import { Box, TextField, Button, styled, Typography,  Dialog, DialogTitle, DialogContent,DialogActions } from "@mui/material";
 import { API } from "../../service/api";
 import "./Login.css";
 import { DataContext } from "../../context/DataProvider";
@@ -59,20 +59,27 @@ const LoginInitialvalues = {
   password: "",
 };
 const Login = ({ isUserAuthenticated }) => {
+
   const [account, ToggleAccount] = useState("login");
-
   const [login, setLogin] = useState(LoginInitialvalues);
-
   const [signup, setSignup] = useState(signupInitialvalues);
-
   const [loginError, setLoginError] = useState("");
   const [signupError, setSignupError] = useState('');
-
   const [showPassword, setShowPassword] = useState(false);
-
   const { setAccount } = useContext(DataContext);
-
+  const [openPopup, setOpenPopup] = useState(true);
   const navigate = useNavigate();
+
+
+  const handlePopupClose = () => {
+    setOpenPopup(false);
+  };
+
+  // You can use useEffect if you want to trigger some logic on component mount
+  useEffect(() => {
+    // Popup opens automatically on page load, no need to do anything here.
+  }, []);
+
 
   const entry = (props) => {
     props.preventDefault();
@@ -236,6 +243,20 @@ const Login = ({ isUserAuthenticated }) => {
             </Loginbutton>
           </Wrapper>
         )}
+        <Dialog open={openPopup} onClose={handlePopupClose}>
+          <DialogTitle align="center">Welcome to <strong>ONESTOP</strong></DialogTitle>
+          <DialogContent>
+          <Typography>
+            The backend service is hosted on a free-tier subscription. While signing up it may take up to 
+            <strong> 50 seconds</strong>. Be patient and enjoy the application. 
+          </Typography>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handlePopupClose} color="primary">
+              OK
+            </Button>
+          </DialogActions>
+        </Dialog>
       </Box>
     </Component> 
   );
